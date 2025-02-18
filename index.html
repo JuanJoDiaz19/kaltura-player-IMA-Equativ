@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaltura Player with Ads</title>
+</head>
+
+<body>
+    <div id="kaltura_player_807157819" style="width: 560px;height: 395px"></div>
+
+    <script type="text/javascript"
+        src="https://front.cloudvideo.com.co/p/112/embedPlaykitJs/uiconf_id/23448848"></script>
+
+    <script type="text/javascript">
+        try {
+            var kalturaPlayer = KalturaPlayer.setup({
+                targetId: "kaltura_player_807157819",
+                provider: {
+                    partnerId: 112,
+                    uiConfId: 23448848
+                },
+                plugins: {
+                    ima: {
+                        adTagUrl: "https://videoapi.smartadserver.com/ac?siteid=649939&pgid=1963474&fmtid=112835&ab=1&oc=1&out=vast4&ps=1&pb=0&visit=S&vcn=s&vpmt=1&vplcmt=3&skip=&mabd=60&pgDomain=https%3A%2F%2Fdiariodelhuila.com%2F&tmstp=1737501402&schain=1.0,1!calipso.co",
+                        disableAdRules: false,
+                        vpaidMode: 2, // Force VPAID execution
+                        adBreaks: [
+                            {
+                                position: "pre",  // Ensure it's defined
+                                tag: "https://videoapi.smartadserver.com/ac?siteid=649939&pgid=1963474&fmtid=112835&ab=1&oc=1&out=vast4&ps=1&pb=0&visit=S&vcn=s&vpmt=1&vplcmt=3&skip=&mabd=60&pgDomain=https%3A%2F%2Fdiariodelhuila.com%2F&tmstp=1737501402&schain=1.0,1!calipso.co"
+                            }
+                        ]
+                    }
+                }
+            });
+
+
+
+            // Load video content
+            kalturaPlayer.loadMedia({ entryId: '0_wuu6bspe' });
+
+            // Event listener for ads
+            kalturaPlayer.addEventListener("ad-started", function () {
+                console.log("Ad started");
+            });
+
+            kalturaPlayer.addEventListener("ad-completed", function () {
+                console.log("Ad completed");
+            });
+
+            kalturaPlayer.addEventListener("error", function (event) {
+                console.error("Kaltura Player Error:", event);
+                <!-- Load Kaltura Player -->
+            });
+
+            kalturaPlayer.addEventListener("ad-error", function (event) {
+                console.error("Ad Error:", event);
+            });
+
+
+        } catch (e) {
+            console.error("Error initializing Kaltura Player: ", e.message);
+        }
+    </script>
+</body>
+
+</html>
